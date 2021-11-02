@@ -7,3 +7,4 @@ Feature: Amazon show subsection in the left bar.
         And the left side bar should have customer reviews text
         And the left side bar should have brand text
         And the left side bar should have price text
+    

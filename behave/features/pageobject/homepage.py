@@ -1,5 +1,5 @@
 from features.pageobject.basepage import * 
-class MainPage(BasePage):
+class HomePage(BasePage):
     def __init__(self):
 
         super().__init__()
