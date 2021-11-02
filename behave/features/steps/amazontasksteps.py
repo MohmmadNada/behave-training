@@ -4,26 +4,25 @@ from webdriver_manager.chrome import ChromeDriverManager
 from features.environment import *
 from features.pageobject.homepage import *
 from features.scr.helper_function import *
-from features.scr.all_opject import * 
 use_step_matcher("re")
 
 @when('the user navigate to Amazon (.*)')
-def step_impl(context, element):
-    page_name = get_locoter_from_feature(element)
-    context.page = all_pages[page_name]
+def step_impl(context, page):
+    context.page = get_page_module(page)    
     context.driver.get(context.page.url)
     
 @when('the user click on the (.*) category')
 def step_impl(context, element):
     element = get_locoter_from_feature(element)
-    element_xpath = get_xpath_from_page(context.page, element)
+    element_xpath = get_xpath_from_page(context, element)
     first_card = context.driver.find_element_by_xpath(element_xpath)
     first_card.click()
 
-@then('the (.*) should be appear')
-def step_impl(context, element):
+@then('the (.*) should be appear in the (.*).')
+def step_impl(context, element, new_page):
+    context.page = get_page_module(new_page)
     element = get_locoter_from_feature(element)
-    element_xpath = get_xpath_from_page(context.page, element)
+    element_xpath = get_xpath_from_page(context, element)
     left_bar = context.driver.find_element_by_xpath(element_xpath)
     left_bar.is_displayed()
 
@@ -34,7 +33,7 @@ def step_impl(context, parent_element, child_element):
     """
     parent_element = get_locoter_from_feature(parent_element)
     child_element = get_locoter_from_feature(child_element)    
-    parent_xpath = get_xpath_from_page(context.page, parent_element)
-    child_xpath = get_xpath_from_page(context.page, child_element)
+    parent_xpath = get_xpath_from_page(context, parent_element)
+    child_xpath = get_xpath_from_page(context, child_element)
     department_section = context.driver.find_element_by_xpath(parent_xpath + child_xpath)
     department_section.is_displayed()
