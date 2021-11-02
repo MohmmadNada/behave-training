@@ -18,9 +18,13 @@ def step_impl(context, element):
     first_card = context.driver.find_element_by_xpath(element_xpath)
     first_card.click()
 
-@then('the (.*) should be appear in the (.*).')
-def step_impl(context, element, new_page):
-    context.page = get_page_module(new_page)
+@when("the user should be redirect to Amazon (.*)")
+def step_impl(context, page):
+    context.page = get_page_module(page) 
+    assert context.page.url in context.driver.current_url
+    
+@then('the (.*) should be appear')
+def step_impl(context, element):
     element = get_locoter_from_feature(element)
     element_xpath = get_xpath_from_page(context, element)
     left_bar = context.driver.find_element_by_xpath(element_xpath)

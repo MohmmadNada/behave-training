@@ -17,3 +17,5 @@ def get_page_module(page):
     except KeyError:
         raise KeyError(f"{page} is not available, please check the page name")
 
+def get_element_by_xpath(context, locator):
+    pass

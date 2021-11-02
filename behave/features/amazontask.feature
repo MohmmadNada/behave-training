@@ -1,14 +1,15 @@
 Feature: Amazon
     Scenario: Amazon show subsection in the left bar.
-        When the user navigate to Amazon Home Pages
+        When the user navigate to Amazon Home Page
         And the user click on the first card category
-        Then the left side bar should be appear in the result page.
+        When the user should be redirect to Amazon result Page
+        Then the left side bar should be appear 
         And the left side bar should have department text
         And the left side bar should have customer reviews text
         And the left side bar should have brand text
         And the left side bar should have price text
     Scenario: correct search result
-        When the user navigate to amazon Home page
-        And type iphone in search input
+        When the user navigate to Amazon Home page
+        And type iphone in search input field
         And click on Search button
-        Then The result page url should have iphone text
+        Then The result page url should have iphone word
