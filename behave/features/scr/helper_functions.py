@@ -1,4 +1,5 @@
-from features.scr.all_opjects import *
+from features.scr.all_objects import *
+from random_username.generate import generate_username
 
 def get_locoter_from_feature(locator):
     """
@@ -49,3 +50,18 @@ def get_element_inside_element(context, parent_locator, child_locator):
     xpath_parent = get_xpath_from_page(context, parent_locator)
     xpath_child = get_xpath_from_page(context, child_locator)
     return context.driver.find_element_by_xpath(xpath_parent  + xpath_child )
+
+# create account function, should be in the page object ? 
+def create_random_username():
+    return generate_username(1)[0]
+
+def create_random_email():
+    email = generate_username(1)[0]
+    email = email + '@gamil.com'
+    return email 
+
+def create_password():
+    password = generate_username(1)[0]
+    if len(password) < 6: 
+        create_password()
+    return password
